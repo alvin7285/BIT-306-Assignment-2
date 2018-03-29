@@ -1,40 +1,39 @@
-MembersList = new Mongo.Collection('Member');
-ImageList = new Mongo.Collection('Images');
+PicturesList = new Mongo.Collection('Picture');
 
-console.log(MembersList);
+
+console.log(PicturesList);
 
 if (Meteor.isClient) {
-  Template.leaderboard.helpers({
-    'member': function() {
+  Template.image_add_form.helpers({
+    'picture': function() {
       var currentUserId = Meteor.userId();
-      return MembersList.find({
+      return PicturesList.find({
         createdBy: currentUserId
       }, {
         sort: {
-          score: -1,
-          name: 1
+          title: 1
         }
       })
     },
 
-    'selectedClass': function() {
-      var memberId = this._id;
-      var selectedMember = Session.get('selectedMember');
-      if (memberId == selectedMember) {
-        return "selected"
-      }
-    },
+    // 'selectedClass': function() {
+    //   var pictureId = this._id;
+    //   var selectedPicture = Session.get('selectedPicture');
+    //   if (pictureId == selectedPicture) {
+    //     return "selected"
+    //   }
+    // },
 
-    'showSelectedMember': function() {
-      var selectedMember = Session.get('selectedMember');
-      return MembersList.findOne(selectedMember)
-    }
+    // 'showSelectedPicture': function() {
+    //   var selectedPicture = Session.get('selectedPicture');
+    //   return PicturesList.findOne(selectedPicture)
+    // }
 
   });
 
 //for image
   Template.image_add_form.helpers({
-    images: ImageList.find({}, {
+    images: PicturesList.find({}, {
       sort: {
         createdOn: -1
       }
@@ -46,72 +45,69 @@ if (Meteor.isClient) {
     "submit .js-add-image": function(event) {
       var img_src = event.target.img_src.value;
       var img_alt = event.target.img_alt.value;
-
-      ImageList.insert({
+      var title = event.target.title.value;
+      var description = event.target.description.value;
+      PicturesList.insert({
         img_src: img_src,
         img_alt: img_alt,
+        title: title,
+        description: description,
         createdOn: new Date()
       });
     }
   });
 
 
-  Template.leaderboard.events({
-    'click .member': function() {
-      var memberId = this._id;
-      Session.set('selectedMember', memberId);
-      var selectedMember = Session.get('selectedMember');
-      console.log(selectedMember);
+  Template.image_add_form.events({
+    'click .picture': function() {
+      var pictureId = this._id;
+      Session.set('selectedPicture', pictureId);
+      var selectedPicture = Session.get('selectedPicture');
+      console.log(selectedPicture);
     },
 
-    'click .increment': function() {
-      var selectedMember = Session.get('selectedMember');
-      MembersList.update(selectedMember, {
-        $inc: {
-          score: 5
-        }
-      });
+    // 'click .increment': function() {
+    //   var selectedPicture = Session.get('selectedPicture');
+    //   PicturesList.update(selectedPicture, {
+    //     $inc: {
+    //       score: 5
+    //     }
+    //   });
 
-      console.log(selectedMember);
-    },
+    //   console.log(selectedPicture);
+    // },
 
-    'click .decrement': function() {
-      var selectedMember = Session.get('selectedMember');
-      MembersList.update(selectedMember, {
-        $inc: {
-          score: -5
-        }
-      });
-
-      console.log(selectedMember);
-    },
+    // 'click .decrement': function() {
+    //   var selectedPicture = Session.get('selectedPicture');
+    //   PicturesList.update(selectedPicture, {
+    //     $inc: {
+    //       score: -5
+    //     }
+    //   });
+    //
+    //   console.log(selectedPicture);
+    // },
 
     'click .remove': function() {
-      var selectedMember = Session.get('selectedMember');
-      MembersList.remove(selectedMember);
+      var selectedPicture = Session.get('selectedPicture');
+      PicturesList.remove(selectedPicture);
     }
 
   });
 
 
-  Template.addMemberForm.events({
+  Template.image_add_form.events({
     'submit form': function(event) {
       event.preventDefault();
-      var memberNameVar = event.target.MemberName.value;
+      var pictureNameVar = event.target.PictureName.value;
       var currentUserId = Meteor.userId();
-      MembersList.insert({
-        name: memberNameVar,
-        score: 0,
+      PicturesList.insert({
+        name: pictureNameVar,
         createdBy: currentUserId
       });
     }
   });
 
-  Template.name.events({
-    "click #foo": function(event, template) {
-
-    }
-  });
 
 
 

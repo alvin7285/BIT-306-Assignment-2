@@ -3,64 +3,33 @@
 </head>
 
 <body>
-  <h1>Welcome to Jinjang Utara Community Project</h1>
+  <h1>Leaderboard</h1>
 
   {{> loginButtons}}
 
-  {{> addMemberForm}}
-
-  {{> leaderboard}}
-
-<!-- for image -->
   {{> image_add_form}}
 
 </body>
 
-<template name="leaderboard">
-
-  <input type="button" class="increment" value="Give 5 Points"/>
-  <input type="button" class="decrement" value="Take 5 Points"/>
-  <input type="button" class="remove" value="Remove Member">
-  {{#if showSelectedMember}}
-    <li> Selected Member: {{showSelectedMember.name}} </li>
-  {{/if}}
-  <ul>
-    {{#each member}}
-      <li class="member {{selectedClass}}">
-        {{name}}
-        :
-        {{score}}
-      </li>
-    {{/each}}
-  </ul>
-
-</template>
-
-<template name="addMemberForm">
-  {{#if currentUser}}
-  <form>
-    <input type="text" name="MemberName">
-    <input type="submit" name="Add Member">
-  </form>
-  {{/if}}
-</template>
-
-<!-- for image -->
 
 <template name="image_add_form">
   <form class="js-add-image">
     <input type="text" name="img_src" placeholder="Image Path"/>
     <br/>
-    <input type="text" name="img_alt" placeholder="Alternate Text"/>
-    <button class="btn btn-success">Save</button>
+    <input type="text" name="img_alt" placeholder="Alternate Text"/><br/>
+    <input type="text" name="title" placeholder="Title"/><br/>
+    <input type="text" name="description" placeholder="Description of Picture"/><br/>
+    <button class="btn btn-success">Add Picture</button>
+    <input type="button" class="remove" value="Remove Picture">
   </form>
 
   <div class="row">
     {{#each images}}
-    <div class="col-xs-12 col-md-3">
-      <div class="thumbnail">
-        <img src="{{img_src}}" alt="{{img_alt}}" class="js-image"/>
-        {{createdOn}}
+    <div class="col-xs-12 col-md-2">
+      <div>
+        <img src="{{img_src}}" alt="{{img_alt}}" class="js-image" height="200px"/><br/>
+        {{title}}<br/>
+        {{description}}
       </div>
     </div>
     {{/each}}
