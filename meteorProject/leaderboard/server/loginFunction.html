@@ -1,0 +1,69 @@
+<head>
+  <title>Leaderboard</title>
+</head>
+
+<body>
+  <h1>Leaderboard</h1>
+
+  {{> loginButtons}}
+
+  {{> addPlayerForm}}
+
+  {{> leaderboard}}
+
+<!-- for image -->
+  {{> image_add_form}}
+
+</body>
+
+<template name="leaderboard">
+
+  <input type="button" class="increment" value="Give 5 Points"/>
+  <input type="button" class="decrement" value="Take 5 Points"/>
+  <input type="button" class="remove" value="Remove Player">
+  {{#if showSelectedPlayer}}
+    <li> Selected Player: {{showSelectedPlayer.name}} </li>
+  {{/if}}
+  <ul>
+    {{#each player}}
+      <li class="player {{selectedClass}}">
+        {{name}}
+        :
+        {{score}}
+      </li>
+    {{/each}}
+  </ul>
+
+</template>
+
+<template name="addPlayerForm">
+  {{#if currentUser}}
+  <form>
+    <input type="text" name="PlayerName">
+    <input type="submit" name="Add Player">
+  </form>
+  {{/if}}
+</template>
+
+<!-- for image -->
+
+<template name="image_add_form">
+  <form class="js-add-image">
+    <input type="text" name="img_src" placeholder="Image Path"/>
+    <br/>
+    <input type="text" name="img_alt" placeholder="Alternate Text"/>
+    <button class="btn btn-success">Save</button>
+  </form>
+
+  <div class="row">
+    {{#each images}}
+    <div class="col-xs-12 col-md-3">
+      <div class="thumbnail">
+        <img src="{{img_src}}" alt="{{img_alt}}" class="js-image"/>
+        {{createdOn}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+</template>
