@@ -16,18 +16,18 @@ if (Meteor.isClient) {
       })
     },
 
-    // 'selectedClass': function() {
-    //   var pictureId = this._id;
-    //   var selectedPicture = Session.get('selectedPicture');
-    //   if (pictureId == selectedPicture) {
-    //     return "selected"
-    //   }
-    // },
+    'selectedClass': function() {
+      var pictureId = this._id;
+      var selectedPicture = Session.get('selectedPicture');
+      if (pictureId == selectedPicture) {
+        return "selected"
+      }
+    },
 
-    // 'showSelectedPicture': function() {
-    //   var selectedPicture = Session.get('selectedPicture');
-    //   return PicturesList.findOne(selectedPicture)
-    // }
+    'showSelectedPicture': function() {
+      var selectedPicture = Session.get('selectedPicture');
+      return PicturesList.findOne(selectedPicture)
+    }
 
   });
 
@@ -46,11 +46,13 @@ if (Meteor.isClient) {
       var img_src = event.target.img_src.value;
       var img_alt = event.target.img_alt.value;
       var title = event.target.title.value;
+      var createdBy = Meteor.userEmail();
       var description = event.target.description.value;
       PicturesList.insert({
         img_src: img_src,
         img_alt: img_alt,
         title: title,
+        createdBy: createdBy,
         description: description,
         createdOn: new Date()
       });
@@ -96,19 +98,17 @@ if (Meteor.isClient) {
   });
 
 
-  Template.image_add_form.events({
-    'submit form': function(event) {
-      event.preventDefault();
-      var pictureNameVar = event.target.PictureName.value;
-      var currentUserId = Meteor.userId();
-      PicturesList.insert({
-        name: pictureNameVar,
-        createdBy: currentUserId
-      });
-    }
-  });
-
-
+  // Template.image_add_form.events({
+  //   'submit form': function(event) {
+  //     event.preventDefault();
+  //     var pictureNameVar = event.target.PictureName.value;
+  //     var currentUserId = Meteor.userId();
+  //     PicturesList.insert({
+  //       name: pictureNameVar,
+  //       createdBy: currentUserId
+  //     });
+  //   }
+  // });
 
 
 }

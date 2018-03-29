@@ -1,9 +1,9 @@
 <head>
-  <title>Leaderboard</title>
+  <title>Jinjang Utara Community</title>
 </head>
 
 <body>
-  <h1>Leaderboard</h1>
+  <h1>Welcome!!!</h1>
 
   {{> loginButtons}}
 
@@ -23,12 +23,18 @@
     <input type="button" class="remove" value="Remove Picture">
   </form>
 
-  <div class="row">
+  {{#if showSelectedPicture}}
+    Selected picture: {{showSelectedPicture.title}}
+  {{/if}}
+
+  <div class = "row">
     {{#each images}}
-    <div class="col-xs-12 col-md-2">
-      <div>
-        <img src="{{img_src}}" alt="{{img_alt}}" class="js-image" height="200px"/><br/>
+    <div class = "col-xs-12 col-md-4">
+      <div class = "picture {{selectedClass}}">
+        <img src="{{img_src}}" alt="{{img_alt}}" class="js-image"
+        height="180px"/><br/>
         {{title}}<br/>
+        {{createdBy}}<br/>
         {{description}}
       </div>
     </div>

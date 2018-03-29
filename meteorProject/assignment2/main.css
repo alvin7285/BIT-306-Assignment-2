@@ -1,2 +1,7 @@
 /* CSS declarations go here */
-.selected{  background-color: yellow;}
+.selected
+{
+  border-style: solid;
+  border-width: thick;
+  border-color: black;
+}
