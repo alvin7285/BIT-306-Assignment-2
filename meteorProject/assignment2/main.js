@@ -46,7 +46,8 @@ if (Meteor.isClient) {
       var img_src = event.target.img_src.value;
       var img_alt = event.target.img_alt.value;
       var title = event.target.title.value;
-      var createdBy = Meteor.userEmail();
+      var user = Meteor.userId();
+      var createdBy = user.emails[0].address;
       var description = event.target.description.value;
       PicturesList.insert({
         img_src: img_src,

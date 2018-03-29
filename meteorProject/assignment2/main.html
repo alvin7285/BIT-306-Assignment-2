@@ -3,7 +3,7 @@
 </head>
 
 <body>
-  <h1>Welcome!!!</h1>
+  <h1>Welcome to Jinjang Utara Community!!!</h1>
 
   {{> loginButtons}}
 
@@ -15,10 +15,10 @@
 <template name="image_add_form">
   <form class="js-add-image">
     <input type="text" name="img_src" placeholder="Image Path"/>
+    <input type="text" name="img_alt" placeholder="Alternate Text"/>
+    <input type="text" name="title" placeholder="Title"/>
+    <input type="text" name="description" placeholder="Description of Picture"/>
     <br/>
-    <input type="text" name="img_alt" placeholder="Alternate Text"/><br/>
-    <input type="text" name="title" placeholder="Title"/><br/>
-    <input type="text" name="description" placeholder="Description of Picture"/><br/>
     <button class="btn btn-success">Add Picture</button>
     <input type="button" class="remove" value="Remove Picture">
   </form>

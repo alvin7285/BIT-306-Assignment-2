@@ -5,3 +5,10 @@
   border-width: thick;
   border-color: black;
 }
+
+.js-add-image > input
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
