@@ -46,8 +46,7 @@ if (Meteor.isClient) {
       var img_src = event.target.img_src.value;
       var img_alt = event.target.img_alt.value;
       var title = event.target.title.value;
-      var user = Meteor.userId();
-      var createdBy = user.emails[0].address;
+      var createdBy = Meteor.user().emails[0].address;
       var description = event.target.description.value;
       PicturesList.insert({
         img_src: img_src,
@@ -93,7 +92,22 @@ if (Meteor.isClient) {
 
     'click .remove': function() {
       var selectedPicture = Session.get('selectedPicture');
-      PicturesList.remove(selectedPicture);
+
+      if(confirm("Are you sure to delete this image?") == true)
+        PicturesList.remove(selectedPicture);
+    },
+
+    'click .sort': function() {
+      event.preventDefault();
+      var currentUser = Meteor.user().emails[0].address;
+
+      return PicturesList.find({
+        Session.get('createdBy'): currentUser
+      }, {
+        sort: {
+          title: 1
+        }
+      })
     }
 
   });

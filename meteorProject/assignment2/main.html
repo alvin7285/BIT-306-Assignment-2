@@ -5,12 +5,13 @@
 <body>
   <h1>Welcome to Jinjang Utara Community!!!</h1>
 
-  {{> loginButtons}}
+  <div class = "login">
+    {{> loginButtons}}
+  </div>
 
   {{> image_add_form}}
 
 </body>
-
 
 <template name="image_add_form">
   <form class="js-add-image">
@@ -21,6 +22,7 @@
     <br/>
     <button class="btn btn-success">Add Picture</button>
     <input type="button" class="remove" value="Remove Picture">
+    <input type="button" class = "sort" value="My Pictures">
   </form>
 
   {{#if showSelectedPicture}}
@@ -29,10 +31,9 @@
 
   <div class = "row">
     {{#each images}}
-    <div class = "col-xs-12 col-md-4">
-      <div class = "picture {{selectedClass}}">
-        <img src="{{img_src}}" alt="{{img_alt}}" class="js-image"
-        height="180px"/><br/>
+    <div class = "col-xs-12 col-md-3">
+      <div class = "picture thumbnail {{selectedClass}}">
+        <img src="{{img_src}}" alt="{{img_alt}}" class="js-image"/><br/>
         {{title}}<br/>
         {{createdBy}}<br/>
         {{description}}
