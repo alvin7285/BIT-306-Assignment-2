@@ -68,27 +68,19 @@ if (Meteor.isClient) {
       console.log(selectedPicture);
     },
 
-    // 'click .increment': function() {
-    //   var selectedPicture = Session.get('selectedPicture');
-    //   PicturesList.update(selectedPicture, {
-    //     $inc: {
-    //       score: 5
-    //     }
-    //   });
+    'click .edit': function(event) {
+      var selectedPicture = Session.get('selectedPicture');
+      var newTitle = prompt("Enter new Title");
+      var newDescription = prompt("Enter new Description");
 
-    //   console.log(selectedPicture);
-    // },
-
-    // 'click .decrement': function() {
-    //   var selectedPicture = Session.get('selectedPicture');
-    //   PicturesList.update(selectedPicture, {
-    //     $inc: {
-    //       score: -5
-    //     }
-    //   });
-    //
-    //   console.log(selectedPicture);
-    // },
+      PicturesList.update(selectedPicture, {
+        $set: {
+          title: newTitle,
+          description: newDescription
+        }
+      });
+      console.log(selectedPicture);
+    },
 
     'click .remove': function() {
       var selectedPicture = Session.get('selectedPicture');
@@ -97,18 +89,15 @@ if (Meteor.isClient) {
         PicturesList.remove(selectedPicture);
     },
 
-    'click .sort': function() {
-      event.preventDefault();
-      var currentUser = Meteor.user().emails[0].address;
-
-      return PicturesList.find({
-        Session.get('createdBy'): currentUser
-      }, {
-        sort: {
-          title: 1
-        }
-      })
-    }
+    // 'click .sort': function() {
+    //   var currentUser = Session.get('email');
+    //
+    //   return PicturesList.find({createdBy:currentUser}, {
+    //     sort: {
+    //       createdOn: -1
+    //     }
+    //   });
+    // }
 
   });
 
