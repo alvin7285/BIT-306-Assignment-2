@@ -13,8 +13,18 @@
   margin-left: 10px;
 }
 
+.btn-success
+{
+  margin-left: 10px;
+}
+
 .login
 {
-
-  height: 60px;
+  margin-right: 10px;
+  height: 50px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+  font-size: 18px;
+  width:100%;
 }

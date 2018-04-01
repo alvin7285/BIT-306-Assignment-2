@@ -11,7 +11,7 @@ if (Meteor.isClient) {
         createdBy: currentUserId
       }, {
         sort: {
-          title: 1
+          createdOn: 1
         }
       })
     },
@@ -27,11 +27,10 @@ if (Meteor.isClient) {
     'showSelectedPicture': function() {
       var selectedPicture = Session.get('selectedPicture');
       return PicturesList.findOne(selectedPicture)
-    }
+    },
 
   });
 
-//for image
   Template.image_add_form.helpers({
     images: PicturesList.find({}, {
       sort: {
@@ -40,19 +39,18 @@ if (Meteor.isClient) {
     })
   });
 
-//for image
   Template.image_add_form.events({
     "submit .js-add-image": function(event) {
       var img_src = event.target.img_src.value;
       var img_alt = event.target.img_alt.value;
       var title = event.target.title.value;
-      var createdBy = Meteor.user().emails[0].address;
+      var email = Meteor.user().emails[0].address;
       var description = event.target.description.value;
       PicturesList.insert({
         img_src: img_src,
         img_alt: img_alt,
         title: title,
-        createdBy: createdBy,
+        email: email,
         description: description,
         createdOn: new Date()
       });
@@ -89,30 +87,20 @@ if (Meteor.isClient) {
         PicturesList.remove(selectedPicture);
     },
 
-    // 'click .sort': function() {
-    //   var currentUser = Session.get('email');
-    //
-    //   return PicturesList.find({createdBy:currentUser}, {
-    //     sort: {
-    //       createdOn: -1
-    //     }
-    //   });
-    // }
+    'click .filter': function() {
+      var currentUser = Meteor.user().emails[0].address;
+
+      return PicturesList.find({email:currentUser}, {
+        sort: {
+          createdOn: -1
+        }
+      }).fetch();
+    }
+
 
   });
 
 
-  // Template.image_add_form.events({
-  //   'submit form': function(event) {
-  //     event.preventDefault();
-  //     var pictureNameVar = event.target.PictureName.value;
-  //     var currentUserId = Meteor.userId();
-  //     PicturesList.insert({
-  //       name: pictureNameVar,
-  //       createdBy: currentUserId
-  //     });
-  //   }
-  // });
 
 
 }
