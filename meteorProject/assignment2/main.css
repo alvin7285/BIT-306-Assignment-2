@@ -4,25 +4,98 @@
   border-color: black;
 }
 
-.js-add-image > input
+.js-add-image{
+  background-color: #EAF9FB;
+}
+
+.form-control
 {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
+  width: 300px;
 }
 
 .btn-success
 {
   margin-left: 10px;
+  margin-top: -7.5px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #00383e;
+  border-width: 2.5px;
+  color: #00383e;
+  font-size:20px;
+  font-weight: bold;
+  font-family: 'RockWell';
+  width: 100px;
+  height: 50px;
+  background-color: transparent;
+}
+
+.btn-success:hover
+{
+  background-color: transparent;
+  border-color: #00383e;
+  color: #00383e;
+}
+
+.button
+{
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #00383e;
+  color: #00383e;
+  font-size:20px;
+  font-weight: bold;
+  font-family: 'RockWell';
+  width: 100px;
+  height: 50px;
+  background-color: transparent;
 }
 
 .login
 {
-  margin-right: 10px;
+  width:auto;
   height: 50px;
-  border-style: solid;
-  border-color: black;
-  border-radius: 5px;
   font-size: 18px;
-  width:100%;
+  background-color: #EAF9FB;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #00383e;
+  margin-left: 10px;
+  float: right;
+  margin-right: 160px;
+}
+
+.loginText
+{
+  margin-left: 10px;
+}
+
+.content
+{
+  margin-left: 10px;
+  font-family: 'RockWell';
+  font-size: 18px;
+}
+
+h2
+{
+  color: #00383e;
+  font-family: 'RockWell';
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+h1
+{
+  margin-top: -5px;
+  padding-top: 20px;
+  height: 100px;
+  color: #00383e;
+  font-family: 'RockWell';
+  font-weight: bold;
+  text-align: center;
+  background-color: #EAF9FB;
 }

@@ -6,7 +6,7 @@
   <h1>Welcome to Jinjang Utara Community!!!</h1>
 
   <div class = "login">
-    {{> loginButtons}}
+    <p class = "loginText">{{> loginButtons}}</p>
   </div>
 
   {{> image_add_form}}
@@ -15,20 +15,19 @@
 
 <template name="image_add_form">
   <form class="js-add-image">
-    <input type="text" name="img_src" placeholder="Image Path"/>
-    <input type="text" name="img_alt" placeholder="Alternate Text"/>
-    <input type="text" name="title" placeholder="Title"/>
-    <input type="text" name="description" placeholder="Description of Picture"/>
+    <input type="text" class="form-control" name="img_src" placeholder="Image Path"/>
+    <input type="text" class="form-control" name="img_alt" placeholder="Alternate Text"/>
+    <input type="text" class="form-control" name="title" placeholder="Title"/>
+    <input type="text" class="form-control" name="description" placeholder="Description of Picture"/>
     <br/>
-    <button class="btn btn-success">Add Picture</button>
-    <input type="button" class="remove" value="Remove Picture">
-    <input type="button" class = "filter" value="My Pictures">
-    <input type="button" class = "edit" value="Edit">
-    <input type="text" class="search" placeholder="Search User...">
+    <button class="btn btn-success">Add</button>
+    <input type="button" class = "edit button" value="Edit">
+    <input type="button" class="remove button" value="Delete"><br/>
+    <input type="text" class="search form-control" placeholder="Filter By User">
   </form>
 
   {{#if showSelectedPicture}}
-    Selected picture: {{showSelectedPicture.title}}
+    <h2>Selected picture: {{showSelectedPicture.title}}</h2>
   {{/if}}
 
   <div class = "row">
@@ -36,9 +35,9 @@
     <div class = "col-xs-12 col-md-3">
       <div class = "picture thumbnail {{selectedClass}}">
         <img src="{{img_src}}" alt="{{img_alt}}" class="js-image"/><br/>
-        {{title}}<br/>
-        {{email}}<br/>
-        {{description}}<br/>
+        <p class="content">Title: {{title}}</p>
+        <p class="content">User: {{email}}</p>
+        <p class="content">Description: {{description}}</p>
       </div>
     </div>
     {{/each}}
