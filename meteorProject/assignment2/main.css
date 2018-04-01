@@ -1,8 +1,6 @@
 /* CSS declarations go here */
 .selected
 {
-  border-style: solid;
-  border-width: thin;
   border-color: black;
 }
 

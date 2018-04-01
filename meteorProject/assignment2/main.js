@@ -32,11 +32,23 @@ if (Meteor.isClient) {
   });
 
   Template.image_add_form.helpers({
-    images: PicturesList.find({}, {
-      sort: {
-        createdOn: -1
+    images: function() {
+      var regexp = new RegExp(Session.get('search/keyword'), 'i');
+      if (!regexp) {
+        return PicturesList.find({}, {
+          sort: {
+            createdOn: -1
+          }
+        })
       }
-    })
+      return PicturesList.find({
+        email: regexp
+      }, {
+        sort: {
+          createdOn: -1
+        }
+      });
+    }
   });
 
   Template.image_add_form.events({
@@ -54,7 +66,12 @@ if (Meteor.isClient) {
         description: description,
         createdOn: new Date()
       });
-    }
+    },
+
+    'keyup .search': function(event) {
+      Session.set('search/keyword', event.target.value);
+    },
+
   });
 
 
